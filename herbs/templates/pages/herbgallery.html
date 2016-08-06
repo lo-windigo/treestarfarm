@@ -1,0 +1,29 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags staticfiles %}
+
+{% block main %}
+{{ block.super }}
+
+{{ page.herbgallery.content|richtext_filters|safe }}
+		<section class="herbs">
+{% with page.herbgallery.herb_set.all as herbs %}
+{% for herb in herbs %}
+			<article class="herb glass-block">
+				<a title="{{ herb.title }}" href="{% url "herbs:herb" herb.slug %}">
+					<header>
+						<h1 class="herb-primary">{{ herb.title }}</h1>
+						<h2 class="herb-secondary">{{ herb.latin }}</h2>
+					</header>
+					<p>
+						<img src="{{ MEDIA_URL }}{% thumbnail herb.file 131 75 %}">
+					</p>
+					<p>
+						${{ herb.price_per_oz }}/oz
+					</p>
+				</a>
+			</article>
+{% endfor %}
+{% endwith %}
+		</section>
+{% endblock %}

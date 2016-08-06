@@ -1,0 +1,21 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags staticfiles %}
+
+{% block meta_title %}{{ thisHerb.title }}{% endblock %}
+{% block title %}{{ thisHerb.title }}{% endblock %}
+
+{% block main %}
+{{ block.super }}
+		<dl class="herb-details">
+			<dt>Common name:</dt>
+			<dd>{{ thisHerb.title }}</dd>
+			<dt>Latin name:</dt>
+			<dd>{{ thisHerb.latin }}</dd>
+			<dt>Price per ounce:</dt>
+			<dd>${{ thisHerb.price_per_oz }}/oz</dd>
+		</dl>
+		<p class="herb-image">
+			<img src="{#{ page.MEDIA_URL }}{% thumbnail thisHerb.file 131 75 %#}/static/media/{{ thisHerb.file }}">
+		</p>
+{% endblock %}
