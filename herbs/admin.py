@@ -4,7 +4,7 @@ from django.contrib import admin
 
 from mezzanine.core.admin import TabularDynamicInlineAdmin
 from mezzanine.pages.admin import PageAdmin
-from models import HerbGallery, Herb
+from herbs.models import HerbGallery, Herb
 
 
 class HerbGalleryAdmin(PageAdmin):
